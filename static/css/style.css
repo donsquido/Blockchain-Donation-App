@@ -1,0 +1,82 @@
+/* Payment Options Grid */
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.payment-method {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.crypto-section {
+    border-top: 4px solid #627EEA; /* Ethereum blue */
+}
+
+.upi-section {
+    border-top: 4px solid #5F259F; /* PhonePe purple */
+}
+
+/* QR Code Styling */
+.qr-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.qr-code {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    border: 1px solid #eee;
+    padding: 10px;
+    background: white;
+}
+
+/* UPI Action Buttons */
+.upi-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+.action-btn i {
+    font-size: 16px;
+}
+
+.phonepe-btn {
+    background: #5F259F;
+    color: white;
+}
+
+.phonepe-btn:hover {
+    background: #4a1d7c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-btn {
+        width: 100%;
+    }
+}

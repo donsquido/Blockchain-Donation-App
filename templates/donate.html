@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <!-- Payment Options Section -->
+    <div class="payment-options">
+        <!-- Ethereum Donation -->
+        <div class="payment-method crypto-section">
+            <h2><i class="fab fa-ethereum"></i> Crypto Donation</h2>
+            
+            <!-- Wallet Connection -->
+            <div class="wallet-status">
+                <button id="connectWallet" class="donate-btn">Connect Wallet</button>
+                <p id="walletAddress">Not connected</p>
+                <p id="walletBalance">Balance: 0 ETH</p>
+            </div>
+            
+            <!-- ETH QR Code -->
+            <div class="qr-section">        
+                <img src="{{ url_for('static', filename='images/eth-qr.png') }}" 
+                     alt="Ethereum Donation QR" 
+                     class="qr-code">
+                <p>Scan to send ETH/ERC-20 tokens</p>
+            </div>
+        </div>
+
+        <!-- PhonePe/UPI Donation -->
+        <div class="payment-method upi-section">
+            <h2><i class="fas fa-rupee-sign"></i> UPI/PhonePe</h2>
+            
+            <!-- UPI QR Code -->
+            <div class="qr-section">
+                <img src="{{ url_for('static', filename='images/phonepe.jpg')  }}" 
+                     alt="PhonePe Donation QR" 
+                     class="qr-code">
+                <p>Scan to pay via UPI apps</p>
+            </div>
+            
+            <!-- UPI Actions -->
+            <div class="upi-actions">
+                <button onclick="copyUpiId()" class="action-btn">
+                    <i class="fas fa-copy"></i> Copy UPI ID: arkam_malbari@ybl
+                </button>                   
+                <a href="phonepe://pay?pa=yourvpa@upi&pn=YourOrg&cu=INR"                        
+                   class="action-btn phonepe-btn">
+                    <i class="fab fa-google-pay"></i> Open in PhonePe
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Essential Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+<script>
+    // Ethereum Wallet Connection
+    document.getElementById('connectWallet').addEventListener('click', async () => {
+        try {
+            if (typeof window.ethereum === 'undefined') {
+                alert('Please install MetaMask!');
+                return;
+            }
+            
+            const accounts = await window.ethereum.request({ 
+                method: 'eth_requestAccounts' 
+            });
+            
+            // Display shortened address
+            document.getElementById('walletAddress').textContent = 
+                `${accounts[0].substring(0, 6)}...${accounts[0].substring(38)}`;
+            
+            // Get and display balance
+            const balance = await new Web3(window.ethereum).eth.getBalance(accounts[0]);
+            document.getElementById('walletBalance').textContent = 
+                `Balance: ${Web3.utils.fromWei(balance, 'ether').substring(0, 6)} ETH`;
+                
+        } catch (error) {
+            console.error('Wallet connection error:', error);
+            alert('Failed to connect wallet: ' + error.message);
+        }
+    });
+
+    // UPI ID Copy Function
+    function copyUpiId() {
+        const upiId = "yourvpa@upi"; // Replace with your actual UPI ID
+        navigator.clipboard.writeText(upiId);
+        alert(`Copied UPI ID: ${upiId}`);
+    }
+</script>
+{% endblock %}
