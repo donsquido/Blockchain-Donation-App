@@ -1,0 +1,7 @@
+python-3.10.12
+git init
+git add .
+git commit -m "Blockchain donation project"
+git branch -M main
+git remote add origin https://github.com/donsquido/Arkam_portfolio
+git push -u origin main
