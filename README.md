@@ -1,3 +1,5 @@
+LIVE DEMO: web-production-390f2.up.railway.app
+
 ## Blockchain lab project - Donation Platform
 
 The Payment APP is a Flask-based web application that enables users to transfer funds using Ethereum and Web3. It is a Charity donation website which donated fund to the childrens who needs help from the common people.It allows users to connect their wallets, check wallet balance, and perform fund transfers to other Ethereum addresses.
@@ -30,3 +32,7 @@ The relevant files and their descriptions in the project are as follows:
 - **app.py**: The main Flask application file that handles routing and serves the web pages.
 - **templates/index.html**: The HTML file containing the user interface and JavaScript code for the Payment APP.
 - **static/images/QR.png**: The QR code image file that can be scanned to access the application using a mobile Ethereum wallet.
+
+IMPORTANT NOTE:
+1) First add your metamask address before donating and connect to your account.               
+2) Second you should have enough balance in your account for donation, otherwise the transaction will fail.
